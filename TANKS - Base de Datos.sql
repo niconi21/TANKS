@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `Jugador` (
   `apemat` VARCHAR(45),
   `nivel` INT
 ) ENGINE = InnoDB;
-
+ 
 CREATE TABLE IF NOT EXISTS `Partida` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `jugador` VARCHAR(45),
@@ -17,13 +17,6 @@ CREATE TABLE IF NOT EXISTS `Partida` (
   `ganador` VARCHAR(45)
 ) ENGINE = InnoDB;
 
-insert into partida (jugador, contricante) values ('niconi','pablo');
-insert into movimiento (partida,jugador) values (10, 'niconi');
-insert into movimiento (partida,jugador) values (10, 'pablo'); 
-
-select * from movimiento;
-
-select * from Partida;
 
 CREATE TABLE IF NOT EXISTS `Movimiento` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -35,9 +28,7 @@ CREATE TABLE IF NOT EXISTS `Movimiento` (
   `bala` boolean,
   `vida` int
 ) ENGINE = InnoDB;
-
-drop table movimiento;
-
+ 
 CREATE TABLE IF NOT EXISTS `Estadistica` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `jugador` VARCHAR(45),
@@ -45,4 +36,3 @@ CREATE TABLE IF NOT EXISTS `Estadistica` (
   `vida` VARCHAR(45),
   `tiempo` VARCHAR(45)
 ) ENGINE = InnoDB;
-

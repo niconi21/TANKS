@@ -118,49 +118,79 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="contraseña" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\contraseña.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - login.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="usuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\usuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="tanque - enemigo - abajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tanque - enemigo - abajo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tanque - enemigo - derecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - enemigo - derecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - enemigo - izquierda" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - enemigo - izquierda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - enemigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - enemigo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - Jugador - abajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - Jugador - abajo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - Jugador - derecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - Jugador - derecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - Jugador - izquierda" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - Jugador - izquierda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - Jugador" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - Jugador.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - login1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - login1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tanque - portada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tanque - portada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="contraseña" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\contraseña.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tanque - toolbar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tanque - toolbar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="tanque - Jugador - derecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - Jugador - derecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - Jugador" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - Jugador.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - enemigo - izquierda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - enemigo - izquierda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - Jugador - abajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - Jugador - abajo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - login1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - login1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="usuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\usuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tanque - toolbar_enLinea" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tanque - toolbar_enLinea.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - login.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - enemigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - enemigo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - Jugador - izquierda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - Jugador - izquierda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - enemigo - derecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - enemigo - derecha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque - portada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque - portada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancelar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancelar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="casa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\casa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="consola" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\consola.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="derechos-de-autor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\derechos-de-autor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="facebook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\facebook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Flecha atras" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Flecha atras.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grafico-circular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\grafico-circular.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nombre" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nombre.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="puntuacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\puntuacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tanque" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tanque.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

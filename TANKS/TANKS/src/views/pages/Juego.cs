@@ -16,88 +16,84 @@ namespace TANKS.src.views.pages
 {
     public partial class Juego : Form
     {
-        private Jugador[] jugadores = new Jugador[]{
-            new Jugador{
-                IdJugador = 0,
-                Usuario = "niconi",
-                Clave = "niconi",
-                esOponente = false
-            },
-            new Jugador{
-                IdJugador = 1,
-                Usuario = "pablo",
-                Clave = "pablo",
-                esOponente = true
-            },
-        };
         private Thread _hilo_bala_jugador;
         private Thread _hilo_jugador;
         private Thread _hilo_contricante;
+        private Thread _hilo_tiempo;
 
         private Jugador _jugador;
         private Jugador _oponente;
         private Partida _partida;
-        private Movimiento _movimientoJugador;
-        private Movimiento _movimientoOponente;
+        private Movimiento _movimientoJugador = null;
+        private Movimiento _movimientoOponente = null;
 
         private char _letra = 'w';
         private int _vidaJugador = 100;
         private int _vidaOponente = 100;
+        private int _disparos = 0;
+        private int tiempo = 0;
 
         private delegate void del(Control c, int x, int y);
 
-        public Juego()
+        public Juego(Jugador jugador, Partida partida)
         {
             InitializeComponent();
-            this._jugador = jugadores[0];
-            _partida = new Partida
+            this._jugador = jugador;
+            this._partida = partida;
+            
+            if (jugador.esOponente)
             {
-                Id = 10,
-                Jugador = "niconi",
-                Contricante = "pablo"
-            };
-
-            _movimientoJugador = new Movimiento
-            {
-                Id = 2,
-                Jugador = "niconi",
-                X = 100,
-                Y = 100,
-                Vida = 100,
-            };
-            _movimientoOponente = new Movimiento
-            {
-                Id = 1,
-                Jugador = "pablo",
-                X = 100,
-                Y = 100,
-                Vida = 100,
-            };
-
-            if (!_jugador.esOponente)
-            {
-                MessageBox.Show("Jugador");
-                this._hilo_jugador = new Thread(DatosJugador);
-                this._hilo_jugador.Start();
-            }
-            else
-            {
-                MessageBox.Show("Oponente");
+                _movimientoOponente = (new Conexion()).CrearMovimiento(partida, jugador);
+                _movimientoJugador = leerMovimientoEnenmigo();
                 this._hilo_contricante = new Thread(DatosContricante);
                 this._hilo_contricante.Start();
             }
+            else
+            {
+                _movimientoJugador = (new Conexion()).CrearMovimiento(partida, jugador);
+                _movimientoOponente = leerMovimientoEnenmigo();
+                this._hilo_jugador = new Thread(DatosJugador);
+                this._hilo_jugador.Start();
+                
+            }
+
+            
+            this._hilo_tiempo = new Thread(medirTiempo);
+            this._hilo_tiempo.Start();
+
         }
 
+        private Movimiento leerMovimientoEnenmigo()
+        {
+            Movimiento m = null; 
+            while (m == null)
+            {
+                m = (new Conexion()).leerMovimientoEnemigo(this._jugador, this._partida);
+            }
+            MessageBox.Show(m.ToString());
+            return m;
+        }
+        private void medirTiempo(object obj)
+        {
+            while (_vidaJugador > 0 && _vidaOponente > 0)
+            {
+                tiempo++;
+                del_Tiempo(labelTiempo, tiempo);
+                Thread.Sleep(1000);
+            }
+            _hilo_bala_jugador.Abort();
+            _hilo_contricante.Abort();
+            _hilo_jugador.Abort();
+            /////guardar datos de la partida
+        }
         private void DatosContricante(object obj)
         {
             datos(jugador_component2,jugador_component1, _movimientoOponente, _movimientoJugador);
         }
-
         private void DatosJugador(object obj)
         {
             datos(jugador_component1,jugador_component2, _movimientoJugador, _movimientoOponente);
         }
-
         private void datos(Jugador_component componente, Jugador_component componente2, Movimiento movimiento, Movimiento movimiento2)
         {
             while (_vidaJugador > 0 && _vidaOponente > 0)
@@ -105,15 +101,13 @@ namespace TANKS.src.views.pages
                 movimiento.X = componente.Location.X;
                 movimiento.Y = componente.Location.Y;
                 movimiento.direccion = this._letra;
-                movimiento.Vida = this._vidaJugador;
+                movimiento.Vida = componente.Vida;
                 (new Conexion()).actualizarMovimiento(movimiento);
-
                 (new Conexion()).leerMovimientos(movimiento2);
                 del_movimientoRemoto(componente2);
 
             }
         }
-
         private void del_movimientoRemoto(Control c, int x = 0, int y = 0)
         {
             if (InvokeRequired)
@@ -126,26 +120,33 @@ namespace TANKS.src.views.pages
             {
                 Jugador_component componente = c as Jugador_component;
                 Movimiento m = _jugador.esOponente ? _movimientoJugador : _movimientoOponente;
-                componente.Location = new Point(m.X, m.Y);
-                switch (m.direccion)
+                try
                 {
-                    case 'a':
-                        componente.girar(0);
-                        break;
-                    case 'w':
-                        componente.girar(1);
-                        break;
-                    case 'd':
-                        componente.girar(2);
-                        break;
-                    case 's':
-                        componente.girar(3);
-                        break;
+                    componente.Location = new Point(m.X, m.Y);
+                    switch (m.direccion)
+                    {
+                        case 'a':
+                            componente.girar(0);
+                            break;
+                        case 'w':
+                            componente.girar(1);
+                            break;
+                        case 'd':
+                            componente.girar(2);
+                            break;
+                        case 's':
+                            componente.girar(3);
+                            break;
+                    }
+                    componente.establecerVida(m.Vida);
+                    if (m.bala)
+                    {
+                        crearBala(new PictureBox(), new Point(m.X, m.Y), m.direccion, !_jugador.esOponente);
+                    }
                 }
-                componente.establecerVida(m.Vida);
-                if (m.bala)
+                catch
                 {
-                    crearBala(new PictureBox(), new Point(m.X,m.Y), m.direccion, !_jugador.esOponente);
+
                 }
             }
         }
@@ -187,6 +188,19 @@ namespace TANKS.src.views.pages
             else
             {
                 c.Location = new Point(x, y);
+            }
+        }
+        private void del_Tiempo(Control c, int x, int y=0)
+        {
+            if (InvokeRequired)
+            {
+                del moverBala = new del(del_Tiempo);
+                Object[] parametros = new Object[] { c, x, y };
+                Invoke(moverBala, parametros);
+            }
+            else
+            {
+                labelTiempo.Text = "Tiempo: " + tiempo + " segundos";
             }
         }
         private void Juego_KeyPress(object sender, KeyPressEventArgs e)

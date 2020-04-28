@@ -14,6 +14,7 @@ namespace TANKS.src.tools.objects
         public String Nombre { get; set; }
         public String Apepat { get; set; }
         public String Apemat { get; set; }
+        public int Nivel { get; set; }
         public bool esOponente { get; set; }
     }
 }

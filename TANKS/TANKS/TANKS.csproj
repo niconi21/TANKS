@@ -58,6 +58,12 @@
     <Compile Include="src\views\components\Jugador_component.Designer.cs">
       <DependentUpon>Jugador_component.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\views\options\Oprion-inicio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\views\options\Oprion-inicio.Designer.cs">
+      <DependentUpon>Oprion-inicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\views\pages\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,11 +101,20 @@
     <EmbeddedResource Include="src\views\components\Jugador_component.resx">
       <DependentUpon>Jugador_component.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\views\options\Oprion-inicio.resx">
+      <DependentUpon>Oprion-inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\pages\Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\views\pages\Juego.resx">
       <DependentUpon>Juego.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\views\pages\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\pages\Registro.resx">
+      <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -114,9 +129,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\views\options\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\tanque - login.jpg" />
   </ItemGroup>
@@ -161,6 +174,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tanque - toolbar_enLinea.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\casa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\consola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\derechos-de-autor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flecha atras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\grafico-circular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nombre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\puntuacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tanque.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

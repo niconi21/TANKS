@@ -17,7 +17,8 @@ namespace TANKS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Juego());
+            (new Login()).Show();
+            Application.Run();
         }
     }
 }

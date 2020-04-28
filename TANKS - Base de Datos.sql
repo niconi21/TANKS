@@ -12,25 +12,37 @@ CREATE TABLE IF NOT EXISTS `Jugador` (
 
 CREATE TABLE IF NOT EXISTS `Partida` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `ip` VARCHAR(15)
+  `jugador` VARCHAR(45),
+  `contricante` VARCHAR(45),
+  `ganador` VARCHAR(45)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `Juega` (
+insert into partida (jugador, contricante) values ('niconi','pablo');
+insert into movimiento (partida,jugador) values (10, 'niconi');
+insert into movimiento (partida,jugador) values (10, 'pablo'); 
+
+select * from movimiento;
+
+select * from Partida;
+
+CREATE TABLE IF NOT EXISTS `Movimiento` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `id_jugador` int,
-  `id_partida` int,
-  `gana` TINYINT,
-  CONSTRAINT fk_juega_un_jugador FOREIGN KEY (`id_jugador`) REFERENCES Jugador(`id`),
-  CONSTRAINT fk_juega_en_una_partifa FOREIGN KEY (`id_partida`) REFERENCES Partida(`id`)
+  `partida` int not null,
+  `jugador` VARCHAR(45),
+  `x` INT,
+  `y` INT,
+  `direccion` CHAR,
+  `bala` boolean,
+  `vida` int
 ) ENGINE = InnoDB;
+
+drop table movimiento;
 
 CREATE TABLE IF NOT EXISTS `Estadistica` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `id_jugador` int,
-  `id_juega` int,
-  `vida` VARCHAR(255),
-  `disparos` int,
-  `tiempo` int,
-  CONSTRAINT fk_estadistica_un_jugador FOREIGN KEY (`id_jugador`) REFERENCES Jugador(`id`),
-  CONSTRAINT fk_estadistica_esta_juego FOREIGN KEY (`id_juega`) REFERENCES Juega(`id`)
+  `jugador` VARCHAR(45),
+  `disparos` VARCHAR(45),
+  `vida` VARCHAR(45),
+  `tiempo` VARCHAR(45)
 ) ENGINE = InnoDB;
+

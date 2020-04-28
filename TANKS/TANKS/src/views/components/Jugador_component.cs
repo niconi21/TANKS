@@ -32,11 +32,26 @@ namespace TANKS.src.views.components
 
         public void vida(int menos)
         {
-            if (menos > progressBar1.Minimum)
+            try
             {
-                this.Vida -= menos;
-                this.progressBar1.Value -= menos;
+                if (progressBar1.Value > progressBar1.Minimum)
+                {
+                    this.Vida -= menos;
+                    this.progressBar1.Value -= menos;
+                }
             }
+            catch
+            {
+                this.Vida = 0;
+                this.progressBar1.Value = 0;
+
+            }
+        }
+
+        public void establecerVida(int value)
+        {
+            this.Vida = value;
+            this.progressBar1.Value = value;
         }
 
     }

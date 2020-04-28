@@ -35,7 +35,7 @@
             // jugador_component1
             // 
             this.jugador_component1.BackColor = System.Drawing.Color.Transparent;
-            this.jugador_component1.Location = new System.Drawing.Point(12, 358);
+            this.jugador_component1.Location = new System.Drawing.Point(12, 367);
             this.jugador_component1.Name = "jugador_component1";
             this.jugador_component1.Size = new System.Drawing.Size(40, 40);
             this.jugador_component1.TabIndex = 0;
@@ -44,7 +44,7 @@
             // jugador_component2
             // 
             this.jugador_component2.BackColor = System.Drawing.Color.Transparent;
-            this.jugador_component2.Location = new System.Drawing.Point(766, 358);
+            this.jugador_component2.Location = new System.Drawing.Point(775, 367);
             this.jugador_component2.Name = "jugador_component2";
             this.jugador_component2.Size = new System.Drawing.Size(40, 40);
             this.jugador_component2.TabIndex = 1;
@@ -72,5 +72,6 @@
 
         private components.Jugador_component jugador_component1;
         private components.Jugador_component jugador_component2;
+
     }
 }

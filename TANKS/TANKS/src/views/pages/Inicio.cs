@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TANKS.src.tools.database;
@@ -41,6 +42,7 @@ namespace TANKS.src.views.pages
 
         private void insertarContenido(Control c)
         {
+            this.panel_contenido.Controls.Clear();
             c.Dock = DockStyle.Fill;
             this.panel_contenido.Controls.Add(c);
         }
@@ -56,11 +58,36 @@ namespace TANKS.src.views.pages
         {
             if (e.KeyChar == 13)
             {
+                _inicio.pararParpadeo();
+                this.label6.Visible = true;
+                this._inicio.SendToBack();
+                Thread.Sleep(1000);
                 Partida partida = (new Conexion()).insertarJugadorPartida(_jugador);
                 Juego juego = new Juego(_jugador, partida);
                 juego.Show();
                 this.Dispose();
             }
+        }
+
+        private void panel_creditos_Click(object sender, EventArgs e)
+        {
+            this._inicio.pararParpadeo();
+            Creditos_option creditos=new Creditos_option();
+            insertarContenido(creditos);
+        }
+
+        private void panel_estadistica_Click(object sender, EventArgs e)
+        {
+            this._inicio.pararParpadeo();
+            Estadistica_option estadisticas = new Estadistica_option(_jugador);
+            insertarContenido(estadisticas);
+        }
+
+        private void panel_score_Click(object sender, EventArgs e)
+        {
+            this._inicio.pararParpadeo();
+            Score_option score= new Score_option(_jugador);
+            insertarContenido(score);
         }
     }
 }

@@ -36,6 +36,7 @@
     <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +50,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\tools\database\Conexion.cs" />
+    <Compile Include="src\tools\objects\Estadistica.cs" />
     <Compile Include="src\tools\objects\Jugador.cs" />
     <Compile Include="src\tools\objects\Movimiento.cs" />
     <Compile Include="src\tools\objects\Partida.cs" />
@@ -58,11 +60,29 @@
     <Compile Include="src\views\components\Jugador_component.Designer.cs">
       <DependentUpon>Jugador_component.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\views\options\Creditos-option.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\views\options\Creditos-option.Designer.cs">
+      <DependentUpon>Creditos-option.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\views\options\Estadistica-option.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\views\options\Estadistica-option.Designer.cs">
+      <DependentUpon>Estadistica-option.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\views\options\Oprion-inicio.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\views\options\Oprion-inicio.Designer.cs">
       <DependentUpon>Oprion-inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\views\options\Score-option.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\views\options\Score-option.Designer.cs">
+      <DependentUpon>Score-option.cs</DependentUpon>
     </Compile>
     <Compile Include="src\views\pages\Inicio.cs">
       <SubType>Form</SubType>
@@ -101,8 +121,17 @@
     <EmbeddedResource Include="src\views\components\Jugador_component.resx">
       <DependentUpon>Jugador_component.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\views\options\Creditos-option.resx">
+      <DependentUpon>Creditos-option.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\options\Estadistica-option.resx">
+      <DependentUpon>Estadistica-option.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\views\options\Oprion-inicio.resx">
       <DependentUpon>Oprion-inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\options\Score-option.resx">
+      <DependentUpon>Score-option.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\views\pages\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
@@ -116,6 +145,8 @@
     <EmbeddedResource Include="src\views\pages\Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\TANKS.src.tools.objects.Estadistica.datasource" />
+    <None Include="Properties\DataSources\TANKS.src.tools.objects.Partida.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

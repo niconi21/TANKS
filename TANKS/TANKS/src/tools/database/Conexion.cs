@@ -42,7 +42,6 @@ namespace TANKS.src.tools.database
             _conexion.Close();
             return jugador;
         }
-
         public void registrarJugador(Jugador jugador)
         {
             String insert = "INSERT INTO Jugador (usuario, clave, nombre, apepat, apemat, nivel) VALUES ('" + jugador.Usuario + "','" + jugador.Clave + "','" + jugador.Nombre + "','" + jugador.Apepat + "','" + jugador.Apemat + "', "+jugador.Nivel+")";
@@ -51,7 +50,21 @@ namespace TANKS.src.tools.database
             insertCommand.ExecuteNonQuery();
             _conexion.Close();
         }
+        public void insertarEstadistica(Estadistica estadistica, Partida partida)
+        {
+            String insert = "INSERT INTO Estadistica (jugador,disparos,vida,tiempo) values (" +
+                "'" + estadistica.Jugador + "'," + estadistica.Disparos + "," + estadistica.Vida + "," + estadistica.Tiempo + ")";
+            MySqlCommand insertCommand = new MySqlCommand(insert, _conexion);
+            _conexion.Open();
+            insertCommand.ExecuteNonQuery();
+            _conexion.Close();
 
+            String update = "UPDATE Partida SET ganador = '" + partida.Ganador + "' WHERE id = " + partida.Id;
+            MySqlCommand updateCommand = new MySqlCommand(update, _conexion);
+            _conexion.Open();
+            updateCommand.ExecuteNonQuery();
+            _conexion.Close();
+        }
         public Partida insertarJugadorPartida(Jugador jugador)
         {
             String select = "SELECT * FROM Partida WHERE contricante IS NULL LIMIT 1";
@@ -105,7 +118,6 @@ namespace TANKS.src.tools.database
             _conexion.Close();
             return partida;
         }
-
         public Movimiento CrearMovimiento(Partida partida, Jugador jugador)
         {
             String insert = "INSERT INTO Movimiento (partida, jugador) VALUES (" + partida.Id + ", '" + jugador.Usuario + "')";
@@ -152,7 +164,6 @@ namespace TANKS.src.tools.database
             _conexion.Close();
             return movimiento;
         }
-
         public void actualizarMovimiento(Movimiento movimiento)
         {
             String update = "UPDATE Movimiento SET " +
@@ -167,7 +178,6 @@ namespace TANKS.src.tools.database
             updateCommand.ExecuteNonQuery();
             _conexion.Close();
         }
-
         public void leerMovimientos(Movimiento movimiento)
         {
             try
@@ -193,7 +203,6 @@ namespace TANKS.src.tools.database
             _conexion.Close();
 
         }
-
         public void agregarBala(Movimiento movimiento)
         {
             String update = "UPDATE Movimiento set bala = " + movimiento.bala + " where id = " + movimiento.Id;
@@ -202,6 +211,52 @@ namespace TANKS.src.tools.database
             updateCommand.ExecuteNonQuery();
             _conexion.Close();
         }
-
+        public List<Estadistica> leerEstadisticas(Jugador jugador)
+        {
+            String select = "SELECT * FROM Estadistica WHERE jugador = '" + jugador.Usuario + "'";
+            MySqlCommand selectCommand = new MySqlCommand(select, _conexion);
+            _conexion.Open();
+            var reader = selectCommand.ExecuteReader();
+            List<Estadistica> estadisticas = new List<Estadistica>();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    estadisticas.Add(new Estadistica
+                    {
+                        Id = reader.GetInt32(0),
+                        Jugador = reader.GetString(1),
+                        Disparos = reader.GetInt32(2),
+                        Vida = reader.GetInt32(3),
+                        Tiempo = reader.GetInt32(4)
+                    });
+                }
+            }
+            _conexion.Close();
+            return estadisticas;
+        }
+        public List<Partida> leerPartida(Jugador jugador)
+        {
+            String select = "SELECT * FROM Partida WHERE jugador = '" + jugador.Usuario + "' OR contricante = '" + jugador.Usuario + "'";
+            MySqlCommand selectCommand = new MySqlCommand(select, _conexion);
+            _conexion.Open();
+            var reader = selectCommand.ExecuteReader();
+            List<Partida> partidas = new List<Partida>();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    partidas.Add(new Partida
+                    {
+                        Id = reader.GetInt32(0),
+                        Jugador = reader.GetString(1),
+                        Contricante = reader.GetString(2),
+                        Ganador = reader.GetString(3),
+                    });
+                }
+            }
+            _conexion.Close();
+            return partidas;
+        }
     }
 }

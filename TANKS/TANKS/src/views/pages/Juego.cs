@@ -54,7 +54,7 @@ namespace TANKS.src.views.pages
                 _movimientoOponente = leerMovimientoEnenmigo();
                 this._hilo_jugador = new Thread(DatosJugador);
                 this._hilo_jugador.Start();
-                
+                _partida.Contricante = _movimientoOponente.Jugador;
             }
 
             
@@ -62,7 +62,6 @@ namespace TANKS.src.views.pages
             this._hilo_tiempo.Start();
 
         }
-
         private Movimiento leerMovimientoEnenmigo()
         {
             Movimiento m = null; 
@@ -70,7 +69,7 @@ namespace TANKS.src.views.pages
             {
                 m = (new Conexion()).leerMovimientoEnemigo(this._jugador, this._partida);
             }
-            MessageBox.Show(m.ToString());
+            
             return m;
         }
         private void medirTiempo(object obj)
@@ -81,10 +80,31 @@ namespace TANKS.src.views.pages
                 del_Tiempo(labelTiempo, tiempo);
                 Thread.Sleep(1000);
             }
-            _hilo_bala_jugador.Abort();
-            _hilo_contricante.Abort();
-            _hilo_jugador.Abort();
-            /////guardar datos de la partida
+            try { _hilo_bala_jugador.Abort(); } catch { }
+            try { _hilo_contricante.Abort(); } catch { }
+            try { _hilo_jugador.Abort(); } catch { }
+            guardar();
+            
+            
+        }
+        private void guardar()
+        {
+            if (_vidaJugador > 0 && _vidaOponente > 0)
+            {
+                _partida.Ganador = "empate";
+            }else{
+                _partida.Ganador = _vidaJugador>0 ? _movimientoJugador.Jugador : _movimientoOponente.Jugador;
+            }
+            Estadistica estadistica = new Estadistica
+            {
+                Jugador = this._jugador.Usuario,
+                Disparos = this._disparos,
+                Vida = _jugador.esOponente ? _vidaOponente : _vidaJugador,
+                Tiempo = tiempo
+            };
+            (new Conexion()).insertarEstadistica(estadistica, _partida);
+            del_ganador();
+            
         }
         private void DatosContricante(object obj)
         {
@@ -108,20 +128,62 @@ namespace TANKS.src.views.pages
 
             }
         }
+        private void del_ganador(Control c = null, int x = 0, int y = 0)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    del mover = new del(del_ganador);
+                    Object[] parametros = new Object[] { c, x, y };
+                    Invoke(mover, parametros);
+                }
+                else
+                {
+                    this.label1.Text = "El ganador es: " + _partida.Ganador;
+                    this.label1.Visible = true;
+                    Inicio inicio = new Inicio(_jugador);
+                    inicio.Show();
+                    this.Dispose();
+                    
+                }
+            }
+            catch { }
+        }
+        private void del_cerrar(Control c = null, int x = 0, int y = 0)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    del mover = new del(del_ganador);
+                    Object[] parametros = new Object[] { c, x, y };
+                    Invoke(mover, parametros);
+                }
+                else
+                {
+                    Inicio inicio = new Inicio(_jugador);
+                    inicio.Show();
+                    this.Dispose();
+                }
+            }
+            catch { }
+        }
         private void del_movimientoRemoto(Control c, int x = 0, int y = 0)
         {
-            if (InvokeRequired)
+            try
             {
-                del mover = new del(del_movimientoRemoto);
-                Object[] parametros = new Object[] { c, x, y };
-                Invoke(mover, parametros);
-            }
-            else
-            {
-                Jugador_component componente = c as Jugador_component;
-                Movimiento m = _jugador.esOponente ? _movimientoJugador : _movimientoOponente;
-                try
+                if (InvokeRequired)
                 {
+                    del mover = new del(del_movimientoRemoto);
+                    Object[] parametros = new Object[] { c, x, y };
+                    Invoke(mover, parametros);
+                }
+                else
+                {
+                    Jugador_component componente = c as Jugador_component;
+                    Movimiento m = _jugador.esOponente ? _movimientoJugador : _movimientoOponente;
+
                     componente.Location = new Point(m.X, m.Y);
                     switch (m.direccion)
                     {
@@ -143,65 +205,79 @@ namespace TANKS.src.views.pages
                     {
                         crearBala(new PictureBox(), new Point(m.X, m.Y), m.direccion, !_jugador.esOponente);
                     }
-                }
-                catch
-                {
 
                 }
             }
+            catch { }
         }
         private void del_borrar(Control c, int x = 0, int y = 0)
         {
-            if (InvokeRequired)
+            try
             {
-                del borrar = new del(del_borrar);
-                Object[] parametros = new Object[] { c, x, y };
-                Invoke(borrar, parametros);
+                if (InvokeRequired)
+                {
+                    del borrar = new del(del_borrar);
+                    Object[] parametros = new Object[] { c, x, y };
+                    Invoke(borrar, parametros);
+                }
+                else
+                {
+                    c.Dispose();
+                }
             }
-            else
-            {
-                c.Dispose();
-            }
+            catch { }
         }
         private void del_quitarVida(Control c, int x = 0, int y = 0)
         {
-            if (InvokeRequired)
+            try
             {
-                del vida = new del(del_quitarVida);
-                Object[] parametros = new Object[] { c, x, y };
-                Invoke(vida, parametros);
+                if (InvokeRequired)
+                {
+                    del vida = new del(del_quitarVida);
+                    Object[] parametros = new Object[] { c, x, y };
+                    Invoke(vida, parametros);
+                }
+                else
+                {
+                    Jugador_component componente = c as Jugador_component;
+                    componente.vida(5);
+                }
             }
-            else
-            {
-                Jugador_component componente = c as Jugador_component;
-                componente.vida(5);
-            }
+            catch { }
         }
         private void del_moverBala(Control c, int x, int y)
         {
-            if (InvokeRequired)
+            try
             {
-                del moverBala = new del(del_moverBala);
-                Object[] parametros = new Object[] { c, x, y };
-                Invoke(moverBala, parametros);
+                if (InvokeRequired)
+                {
+                    del moverBala = new del(del_moverBala);
+                    Object[] parametros = new Object[] { c, x, y };
+                    Invoke(moverBala, parametros);
+                }
+                else
+                {
+                    c.Location = new Point(x, y);
+                }
             }
-            else
-            {
-                c.Location = new Point(x, y);
-            }
+            catch { }
         }
-        private void del_Tiempo(Control c, int x, int y=0)
+        private void del_Tiempo(Control c, int x, int y = 0)
         {
-            if (InvokeRequired)
+            try
             {
-                del moverBala = new del(del_Tiempo);
-                Object[] parametros = new Object[] { c, x, y };
-                Invoke(moverBala, parametros);
+                if (InvokeRequired)
+                {
+                    del moverBala = new del(del_Tiempo);
+                    Object[] parametros = new Object[] { c, x, y };
+                    Invoke(moverBala, parametros);
+                }
+                else
+                {
+                    labelTiempo.Text = "Tiempo: " + tiempo + " segundos";
+                }
             }
-            else
-            {
-                labelTiempo.Text = "Tiempo: " + tiempo + " segundos";
-            }
+            catch { }
         }
         private void Juego_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -212,6 +288,10 @@ namespace TANKS.src.views.pages
             else
             {
                 moverTanque(this.jugador_component2, e.KeyChar);
+            }
+            if (e.KeyChar == 27)
+            {
+                guardar();
             }
         }
         private void moverTanque(Jugador_component componente, char letra)
@@ -243,6 +323,7 @@ namespace TANKS.src.views.pages
             }
             if (letra == ' ')
             {
+                _disparos++;
                 Movimiento m = !_jugador.esOponente ? _movimientoJugador : _movimientoOponente;
                 m.bala = true;
                 (new Conexion()).agregarBala(m);

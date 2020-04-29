@@ -11,7 +11,7 @@ namespace TANKS.src.tools.objects
         public int Id { get; set; }
         public String Jugador { get; set; }
         public String Contricante { get; set; }
-
+        public String Ganador { get; set; }
         public override string ToString()
         {
             return "id : " + Id +
